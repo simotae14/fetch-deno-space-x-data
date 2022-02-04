@@ -30,3 +30,6 @@ async function downloadLaunchData() {
 downloadLaunchData();
 // run with
 // deno run --allow-net=api.spacexdata.com mod.ts
+
+// reload imports with flag --reload
+// deno run --reload --allow-net=api.spacexdata.com mod.ts
