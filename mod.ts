@@ -11,7 +11,7 @@ interface Launch {
 }
 const launches = new Map<number, Launch>();
 
-async function downloadLaunchData() {
+export async function downloadLaunchData() {
     log.info("Downloading launch data...");
     log.warning("THIS IS A WARNING");
     const response = await fetch("https://api.spacexdata.com/v3/launches", {
@@ -36,7 +36,14 @@ async function downloadLaunchData() {
     }
 }
 
-downloadLaunchData();
+// execute this loggin even when importing the previous function
+if (import.meta.main) {
+    downloadLaunchData();
+    log.info(JSON.stringify(import.meta));
+    // retrieve number elements
+    log.info(`Downloaded data for ${launches.size} SpaceX launches.`);
+}
+
 // run with
 // deno run --allow-net=api.spacexdata.com mod.ts
 
